@@ -2,6 +2,8 @@ import { useRef } from 'react';
 import {Container, Header, Content, ButtonToolbar, Button} from 'rsuite';
 import useModal from './lib/useModal';
 import AddModal from "./components/AddModal";
+import Popup from "reactjs-popup";
+import 'reactjs-popup/dist/index.css';
 
 function App() {
 
