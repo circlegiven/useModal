@@ -1,7 +1,6 @@
 import 'rc-dialog/assets/index.css';
 import 'rc-dialog/assets/bootstrap.css';
 import React, { useState, useCallback } from 'react';
-import { Modal } from 'rsuite';
 import Dialog from "rc-dialog";
 import Draggable from 'react-draggable';
 
@@ -24,7 +23,7 @@ function UseModal() {
 
         return (
             <Dialog visible={visible} onClose={close} title={(
-                <div
+                <div className={'title'}
                     style={{
                         width: '100%',
                         cursor: 'pointer',
@@ -34,7 +33,7 @@ function UseModal() {
                     // end
                 >modal</div>
                 )}
-                modalRender={modal => <Draggable disabled={disabled}>{modal}</Draggable>}
+                modalRender={modal => <Draggable handle=".title" disabled={disabled}>{modal}</Draggable>}
 
             >
                 <div
