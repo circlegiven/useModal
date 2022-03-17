@@ -1,41 +1,30 @@
-import { useRef } from 'react';
-import {Container, Header, Content, ButtonToolbar, Button} from 'rsuite';
-import useModal from './lib/useModal';
-import AddModal from "./components/AddModal";
-import Popup from "reactjs-popup";
-import 'reactjs-popup/dist/index.css';
+import { Button, Layout } from 'antd';
+import useModal from './hooks/useModal';
+import AddContents from './components/AddContents';
+
+const { Header, Footer, Content } = Layout;
 
 function App() {
 
-    const [open, close, Modal] = useModal();
-    const modal = useRef(null);
-
-    function handleClickOpen() {
-        open();
-    }
-
-    function handleClickCustomOpen() {
-        modal.current.open();
-    }
+    const [modalOpen, Modal] = useModal(AddContents);
+    const [dragModalOpen, DraggableModal] = useModal(AddContents);
 
     return (
-        <Container>
-          <Container>
-            <Header>
-              <h2>Modal Control</h2>
-            </Header>
-            <Content>
-                <ButtonToolbar>
-                    <Button onClick={handleClickOpen}> Pure Modal</Button>
-                    <Button onClick={handleClickCustomOpen}> Custom Modal</Button>
-                </ButtonToolbar>
-                <Modal title={'테스트에용'}>
-                    TEST
-                </Modal>
-                <AddModal ref={modal} onConfirm={data => console.log(data)}/>
-            </Content>
-          </Container>
-        </Container>
+        <>
+            <Layout className="layout">
+                <Header>
+                    <h2>Modal Control</h2>
+                </Header>
+                <Content style={{ height: '100%' }}>
+                    <Button onClick={modalOpen}>Modal</Button>
+                    <Button onClick={dragModalOpen}>Draggable Modal</Button>
+                </Content>
+                <Footer style={{ textAlign: 'center' }}>useModal ©2018 Created by circlegiven</Footer>
+            </Layout>
+            <Modal title="Modal"/>
+            <DraggableModal title="Draggable Modal" draggable/>
+        </>
+
     );
 }
 
